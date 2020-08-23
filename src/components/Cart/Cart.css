@@ -1,0 +1,10 @@
+.cart h3{
+    text-align: center;
+    /* margin-left: 100px; */
+    /* align-items: center; */
+    color: black;
+    font-weight: 800;
+}
+.cart h4{
+    text-align: center;
+}
