@@ -4,6 +4,7 @@
     margin-right: 10px;
     margin-bottom: 5px;
     padding-bottom: 5px;
+    padding-left: 80px;
 }
 .product-name{
     color: blue;
@@ -15,4 +16,7 @@
     height: 30px;
     border: 1px solid gray;
     border-radius: 5px;
+}
+.img-style img{
+    margin-right: 20px;
 }
