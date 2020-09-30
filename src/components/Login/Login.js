@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
-import { initializeLoginFramework, handleGoogleSignIn, handleGoogleSignOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from './loginManager';
+import { initializeLoginFramework, handleGoogleSignIn, handleGoogleSignOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, handleGitHubSignIn, handleFbSignIn } from './loginManager';
 
 
 
@@ -32,12 +32,28 @@ function Login() {
     })
   }
 
+  const fbSignIn = () => {
+    handleFbSignIn()
+    .then(res => {
+      handleResponse(res, true);
+    })
+  }
+
+  const gitHubSignIn = () => {
+    handleGitHubSignIn()
+    .then(res => {
+      handleResponse(res, true);
+    })
+  }
+
   const googleSignOut = () => {
     handleGoogleSignOut()
     .then(res => {
       handleResponse(res, false);
     })
   }
+
+
 
   const handleResponse = (res, redirect) => {
       setUser(res);
@@ -66,8 +82,6 @@ function Login() {
    e.preventDefault();
   }
  
-
-
 
   //Handle Change
   const handleBlur = (e) => {
@@ -103,6 +117,10 @@ function Login() {
       {
         user.isSignedIn ? <button onClick={googleSignOut}>Sign out</button> : <button onClick={googleSignIn}>Sign in</button>
       }
+       <br/>
+      <button onClick= {fbSignIn}>Sign in facebook user</button>
+      <br/>
+      <button onClick={gitHubSignIn}>Sign in github user</button>
       {
         user.isSignedIn && <div>
                               <p>welcome , {user.name}</p>
