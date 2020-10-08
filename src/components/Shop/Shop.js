@@ -11,11 +11,16 @@ const Shop = () => {
 
     const [cart, setCart] = useState([]);
 
+    const [search, setSearch] = useState('');
+
     useEffect(() => {
-        fetch('https://stormy-plateau-95863.herokuapp.com/products')
+        fetch('https://stormy-plateau-95863.herokuapp.com/products?search=' + search)
             .then(res => res.json())
-            .then(data => setProduct(data))
-    }, [])
+            .then(data => {
+                setProduct(data)
+                console.log(data);
+            })
+    }, [search])
 
     useEffect(() => {
         const saveCart = getDatabaseCart();
@@ -67,13 +72,16 @@ const Shop = () => {
     }
 
 
-
+    const handleSearch = (event) => {
+        setSearch(event.target.value)
+    }
 
 
     // console.log(first10);
     return (
         <div className='twin-container'>
             <div className="product-container">
+                <input type="text" onBlur={handleSearch} className="search-container" />
                 {
                     products.map(pd => <Product
                         key={pd.key}
